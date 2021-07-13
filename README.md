@@ -1,1 +1,29 @@
 # ffmpeg-cheatsheet-examples
+
+```#FFMPEG TOOLS Cheet sheet examples ...
+#Compiled by Todor "Twenkid"
+#13.7.2021
+#Letterbox
+#Preserve aspect raio
+#Hard-render letterbox a video 
+
+#From stackoverflow:
+#Convert to 1280x720 while preserving the aspect of the video
+ffmpeg -i source.mp4 -vf "scale=(iw*sar)*min(1280/(iw*sar)\,720/ih):ih*min(1280/(iw*sar)\,720/ih), pad=1280:720:(1280-iw*min(1280/iw\,720/ih))/2:(720-ih*min(1280/iw\,720/ih))/2" output2.mp4
+
+#Test
+#Convert to 720x576 - for viewing on a CRT TV without 16:9 format adjustment
+ffmpeg -ss 4:20 -t 20 -i video.avi -vf "scale=(iw*sar)*min(720/(iw*sar)\,576/ih):ih*min(720/(iw*sar)\,576/ih), pad=720:576:(720-iw*min(720/iw\,576/ih))/2:(576-ih*min(720/iw\,576/ih))/2" output3.mp4
+
+#Convert to 688x516  : e.g. 688x310 source, converted for 4:3 TV Set
+
+ffmpeg -ss 45:30 -t 40 -i source.mp4 -vf "scale=(iw*sar)*min(688/(iw*sar)\,516/ih):ih*min(688/(iw*sar)\,516/ih), pad=688:516:(688-iw*min(688/iw\,516/ih))/2:(516-ih*min(688/iw\,516/ih))/2" -c:v libx264 -b:v 900K -tune film -c:a copy output-1M-x264-a-copy-2.mp4
+
+#With using presets for x264: -preset medium, fast, slow, very_slow, ... Use at least similar bitrate to the source, audio is copied -c:a copy. The video channel can't be copied because it's rendered.
+
+ffmpeg -t 5:00 -i movie.avi -vf "scale=(iw*sar)*min(688/(iw*sar)\,516/ih):ih*min(688/(iw*sar)\,516/ih), pad=688:516:(688-iw*min(688/iw\,516/ih))/2:(516-ih*min(688/iw\,516/ih))/2" -c:v libx264 -b:v 900K -preset fast -tune film -c:a copy output-1M-x264-a-copy-2.mp4
+
+#
+(def: medium)
+-preset slow 
+-preset slow ```
