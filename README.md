@@ -1,5 +1,7 @@
 # ffmpeg-cheatsheet-examples
 
+ffmpeg -i video.mp4 -i sound.aac -c:v copy -c:a copy -map 0:v:0 -map 1:a:0 new.mp4
+
 ### Hard-rendered Letterbox Preserve Aspect Ratio 
 ```#FFMPEG TOOLS Cheet sheet examples ...
 # Compiled by Todor "Twenkid"
@@ -30,5 +32,7 @@ ffmpeg -t 5:00 -i movie.avi -vf "scale=(iw*sar)*min(688/(iw*sar)\,516/ih):ih*min
 -preset slow ```
 ```
 ### Change Audio ```map 1:a:0``` ... 
+```
 ffmpeg -i Usmivkata-na-smurtta_Intro_x264_15M_192K_1280x720_13-2-2021.mp4 -i sound.aac -c:v copy -c:a copy -map 0:v:0 -map 1:a:0 new.mp4
 ffmpeg -i video.mp4 -i sound.aac -c:v copy -c:a copy -map 0:v:0 -map 1:a:0 new.mp4
+```
