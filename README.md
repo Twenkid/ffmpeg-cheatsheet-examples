@@ -21,16 +21,16 @@ ffmpeg -ss 4:20 -t 20 -i video.avi -vf "scale=(iw*sar)*min(720/(iw*sar)\,576/ih)
 #Convert to 688x516  : e.g. 688x310 source, converted for 4:3 TV Set
 
 ffmpeg -ss 45:30 -t 40 -i source.mp4 -vf "scale=(iw*sar)*min(688/(iw*sar)\,516/ih):ih*min(688/(iw*sar)\,516/ih), pad=688:516:(688-iw*min(688/iw\,516/ih))/2:(516-ih*min(688/iw\,516/ih))/2" -c:v libx264 -b:v 900K -tune film -c:a copy output-1M-x264-a-copy-2.mp4
-
-# With using presets for x264: -preset medium, fast, slow, veryslow, ... Use at least similar bitrate to the source, audio is copied -c:a copy. 
-# The video channel can't be copied because it's rendered. medium seems several times faster than slow, veryslow ~ 2 times than slow. 
-# One sample source slow: v:1900K + a:320K, ~ 3.94 times faster than real time. Use the width of the source if possible (say 720, 688, 640...) to avoid resizing.
-# Compute aspect /1.33 but sometimes may have to round, e.g. 720x540 (instead of 541.34... or x542)
-
+```
+* With using presets for x264: -preset medium, fast, slow, veryslow, ... Use at least similar bitrate to the source, audio is copied -c:a copy. 
+* The video channel can't be copied because it's rendered. medium seems several times faster than slow, veryslow ~ 2 times than slow. 
+* One sample source slow: v:1900K + a:320K, ~ 3.94 times faster than real time. Use the width of the source if possible (say 720, 688, 640...) to avoid resizing.
+* Compute the height by the aspect /1.33 but sometimes may have to round, e.g. 720x540 (instead of 541.34... or x542)
+* 
+```
 ffmpeg -t 5:00 -i movie.avi -vf "scale=(iw*sar)*min(688/(iw*sar)\,516/ih):ih*min(688/(iw*sar)\,516/ih), pad=688:516:(688-iw*min(688/iw\,516/ih))/2:(516-ih*min(688/iw\,516/ih))/2" -c:v libx264 -b:v 900K -preset fast -tune film -c:a copy output-1M-x264-a-copy-2.mp4
 
 ffmpeg -i H:\v.mkv -vf "scale=(iw*sar)*min(720/(iw*sar)\,540/ih):ih*min(720/(iw*sar)\,540/ih), pad=720:540:(720-iw*min(720/iw\,540/ih))/2:(540-ih*min(720/iw\,540/ih))/2" -c:v libx264 -b:v 1200K -preset slow -tune film -c:a copy F:\v.mkv
-
 
 #
 (def: medium)
