@@ -41,4 +41,10 @@ ffmpeg -i H:\v.mkv -vf "scale=(iw*sar)*min(720/(iw*sar)\,540/ih):ih*min(720/(iw*
 ```
 ffmpeg -i Usmivkata-na-smurtta_Intro_x264_15M_192K_1280x720_13-2-2021.mp4 -i sound.aac -c:v copy -c:a copy -map 0:v:0 -map 1:a:0 new.mp4
 ffmpeg -i video.mp4 -i sound.aac -c:v copy -c:a copy -map 0:v:0 -map 1:a:0 new.mp4
+
+From another video (one channel):
+video from video input 1, audio from video input 2
+
+ffmpeg -i z:\jam.mp4 -i z:\obs\2022-02-02_19-18-52.mp4 -c:v copy -c:a copy -map 0:a:1 -map 1:a:0 z:\jam-crop.mp4
+
 ```
