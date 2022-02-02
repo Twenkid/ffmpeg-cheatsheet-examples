@@ -1,6 +1,10 @@
 # ffmpeg-cheatsheet-examples
 
-ffmpeg -i video.mp4 -i sound.aac -c:v copy -c:a copy -map 0:v:0 -map 1:a:0 new.mp4
+```
+ffmpeg -i video.mp4 -i sound.aac -c:v copy -c:a copy -map 0:v:0 -map 1:a:0 new.mp4 
+ffmpeg -i z:\jam.mp4 -i z:\obs\2022-02-02_19-18-52.mp4 -c:v copy -c:a copy -map 0:a:1 -map 1:a:0 z:\jam-crop.mp4
+
+```
 
 ### Hard-rendered Letterbox Preserve Aspect Ratio 
 ```#FFMPEG TOOLS Cheet sheet examples ...
