@@ -2,7 +2,9 @@
 
 Remove silent parts: (90db, 80db ... etc.)
 
+```
 ffmpeg -i input.mp3 -af silenceremove=stop_periods=-1:stop_duration=1:stop_threshold=-90dB output.mp3
+```
 
 ```
 ffmpeg -i video.mp4 -i sound.aac -c:v copy -c:a copy -map 0:v:0 -map 1:a:0 new.mp4 
